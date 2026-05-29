@@ -1,24 +1,11 @@
 classDiagram
-
-class Ferreteria{
-    -CIF                varchar PK        
-    -DNI_dueno                varchar FK
-    -direccion          varchar
-    -numero_telefono    int
-    -razon_social       varchar
-
-    get crear    ()
-    set crear    ()
-    get modificar()
-    set modificar()
-    get borrar   ()
-    set borrar   ()
-}
-
+  
 class Persona{
     -DNI                varchar 8  PK
     -nombre             varchar 30
     -apellido           varchar 30
+    -telefono           varchar 20
+    -email              varchar 30
     -fecha_nacimiento   date
 
     get crear    ()
@@ -33,7 +20,6 @@ class Empleado{
     -legajo         varchar 15 PK
     -DNI            varchar 8  FK
     -cod_categoria  int        FK
-    -clasifi        varchar 2  
 
     get crear    ()
     set crear    ()
@@ -44,8 +30,9 @@ class Empleado{
 }
 
 class Categoria{
-    -cod_categoria   varchar 15 PK
+    -cod_categoria   int        PK
     -descripcion     varchar 50 
+    -salario_base    float
 
     get crear    ()
     set crear    ()
@@ -56,7 +43,8 @@ class Categoria{
 }
 
 class Cliente{
-    -DNI 
+    -id_cliente int         PK
+    -DNI        varchar 8   FK
 
     get crear    ()
     set crear    ()
@@ -67,7 +55,12 @@ class Cliente{
 }
 
 class Productos{
-
+    -id_producto             int         PK
+    -nombre_producto         varchar 30
+    -descripcion_producto    varchar 50    
+    -Precio                  float   
+    -ubicacion               varchar 30 
+    -stock_producto          int
 
     get crear    ()
     set crear    ()
@@ -78,7 +71,9 @@ class Productos{
 }
 
 class Proveedores{
-
+    -id_proveedor            int         PK  
+    -razon_social            varchar 20 
+    -catalogo_proveedor      varchar 30
 
     get crear    ()
     set crear    ()
@@ -89,7 +84,11 @@ class Proveedores{
 }
 
 class Ventas{
-
+    -id_venta           int PK
+    -legajo             varchar 15 FK
+    -id_cliente         int        FK
+    -fecha_hora         datetime
+    -metodo_pago        varchar 30
 
     get crear    ()
     set crear    ()
@@ -100,7 +99,11 @@ class Ventas{
 }
 
 class Detalle_Ventas{
-
+    -id_detalle_venta   int     PK
+    -id_producto        int     FK
+    -id_venta           int     FK
+    -cantidad           int
+    -precio_unit        float
 
     get crear    ()
     set crear    ()
@@ -111,7 +114,9 @@ class Detalle_Ventas{
 }
 
 class Pedido{
-
+    -id_pedido              int     PK
+    -id_proveedor           int     FK 
+    -fecha_recepcion        date
 
     get crear    ()
     set crear    ()
@@ -122,7 +127,11 @@ class Pedido{
 }
 
 class Detalle_Pedido{
-
+    -id_detalle_pedido      int     PK
+    -id_pedido              int     FK
+    -id_producto            int     FK
+    -cantidad_pedido        int
+    -costo                  float
 
     get crear    ()
     set crear    ()
@@ -131,4 +140,3 @@ class Detalle_Pedido{
     get borrar   ()
     set borrar   ()
 }
-
